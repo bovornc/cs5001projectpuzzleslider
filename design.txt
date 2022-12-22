@@ -1,0 +1,25 @@
+CS5001 - Fall 2021
+Final Project: Puzzle Slider Game
+By: Chanon (Am) Bovornvirakit
+
+The final project for this course is a puzzle slider game, where the user is given an image split into either 4, 9 or 16 pieces.
+The pieces are arranged in a random square, with one blank spot.
+The goal of this game is to "slide" pieces around, using that blank spot, in order to arrange the pieces in the correct order to form an image.
+The user wins if they manage to do so within a certain number of moves (specified by the user themselves).
+The default puzzle is the "Mario" puzzle, but users can load different puzzles with the "Load" button.
+If the user wants a quick solution, the "Reset" button will shuffle all the pieces into the correct order.
+Ending the game, with either a win or loss, will exit the game.
+The game can also be preemptively exited with the "Quit" button.
+
+I began designing this game by using local functions (without any Class objects), but I soon ran into the limitation of needing to update multiple values within one function.
+What really prompted me to make a Board Class was implementing onclick() functions for turtle objects, such as the buttons on the UI and the pieces themselves.
+turtle.onclick(fun) would always send the x- and y-coordinates of where I was clicking into fun as parameters, even if fun didn't need the coordinates as parameters.
+This is why some of the functions within the Board Class have (x, y) as parameters that are never used within the function.
+I ended up implementing everything within the Board Class, as it was convenient to be able to get and update any values with any function without needing to input and return said value(s) as parameters.
+
+I made use of multiple turtle objects in my design; almost everything on the screen is a separate turtle object.
+This probably has the downside of bloating memory usage, but I wasn't sure if there was a way to slap an image on the screen without leaving it there as a turtle object.
+Examples of this are things that didn't need to be clickable, such as the boxes around the UI and the puzzle thumbnail.
+I also didn't want to store each puzzle piece separately in the constructor, which means that as pieces are "moved" around, they're really just having new turtle objects placed on top of them, which also probably bloats memory.
+I also ran into issues with error logging, as I wasn't sure where I should do the try/except thing to detect errors, and didn't know how to log errors otherwise.
+I did spend too much time getting around the issue of hardcoding, which meant that I didn't get to make the game as "pretty" as the sample game (with regards to color, for example).
